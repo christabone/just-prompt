@@ -5,7 +5,7 @@ OpenAI provider implementation.
 """OpenAI provider implementation with support for o‑series *reasoning effort* suffixes.
 
 Supported suffixes (case‑insensitive): ``:low``, ``:medium``, ``:high`` on the
-reasoning models ``o4-mini``, ``o3-mini`` and ``o3``.  When such a suffix is
+reasoning models ``o4-mini``, ``o3-mini``, ``o3`` and ``o3-pro``.  When such a suffix is
 present we use OpenAI's *Responses* API with the corresponding
 ``reasoning={"effort": <level>}`` parameter (if the SDK supports it).  If the
 installed ``openai`` SDK is older and does not expose the ``responses``
@@ -40,7 +40,7 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 # ---------------------------------------------------------------------------
 
 
-_REASONING_ELIGIBLE_MODELS = {"o4-mini", "o3-mini", "o3"}
+_REASONING_ELIGIBLE_MODELS = {"o4-mini", "o3-mini", "o3", "o3-pro"}
 _REASONING_LEVELS = {"low", "medium", "high"}
 
 
@@ -176,5 +176,6 @@ def list_models() -> List[str]:
             "o4-mini",
             "o3-mini",
             "o3",
+            "o3-pro",
             "text-davinci-003",
         ]

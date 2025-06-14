@@ -45,12 +45,14 @@ def test_parse_reasoning_suffix():
     # No suffix
     assert openai.parse_reasoning_suffix("o4-mini") == ("o4-mini", "")
     assert openai.parse_reasoning_suffix("o3") == ("o3", "")
+    assert openai.parse_reasoning_suffix("o3-pro") == ("o3-pro", "")
 
     # Supported suffixes
     assert openai.parse_reasoning_suffix("o4-mini:low") == ("o4-mini", "low")
     assert openai.parse_reasoning_suffix("o4-mini:medium") == ("o4-mini", "medium")
     assert openai.parse_reasoning_suffix("o4-mini:high") == ("o4-mini", "high")
     assert openai.parse_reasoning_suffix("o3-mini:LOW") == ("o3-mini", "low")  # case insensitive
+    assert openai.parse_reasoning_suffix("o3-pro:high") == ("o3-pro", "high")  # o3-pro support
 
     # Unsupported model – suffix ignored
     assert openai.parse_reasoning_suffix("gpt-4o-mini:low") == ("gpt-4o-mini:low", "")
